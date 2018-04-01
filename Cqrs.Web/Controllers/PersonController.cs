@@ -13,25 +13,25 @@ namespace Cqrs.Web.Controllers
     [Route("api/[controller]")]
     public class PeopleController : Controller
     {
-        private readonly IQueryExecuter _queryExecuter;
+        private readonly IQueryRunner _queryRunner;
 
-        public PeopleController(IQueryExecuter queryExecuter)
+        public PeopleController(IQueryRunner queryRunner)
         {
-            _queryExecuter = queryExecuter;
+            _queryRunner = queryRunner;
         }
 
         // GET api/people
         [HttpGet]
         public IEnumerable<PersonResponse> Get()
         {
-            return _queryExecuter.Send(new PeopleResponseQuery());
+            return _queryRunner.Send(new PeopleResponseQuery());
         }
 
         // GET api/people/5
         [HttpGet("{id}")]
         public PersonResponse Get(int id)
         {
-            return _queryExecuter.Send(new PersonResponseQuery(id));
+            return _queryRunner.Send(new PersonResponseQuery(id));
         }
 
         // POST api/people

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cqrs.Dal.Query.Api
 {
-    public interface IQueryExecuter
+    public interface IQueryRunner
     {
         TResult Send<TResult>(IQuery<TResult> query);
 

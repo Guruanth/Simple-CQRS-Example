@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Cqrs.Dal.Query
 {
-    public class QueryExecuter : IQueryExecuter
+    public class QueryRunner : IQueryRunner
     {
         public TResult Send<TResult>(IQuery<TResult> query)
         {

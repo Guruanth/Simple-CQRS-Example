@@ -13,25 +13,25 @@ namespace Cqrs.Web.Controllers
     [Route("api/[controller]")]
     public class CompaniesController : Controller
     {
-        private readonly IQueryExecuter _queryExecuter;
+        private readonly IQueryRunner _queryRunner;
 
-        public CompaniesController(IQueryExecuter queryExecuter)
+        public CompaniesController(IQueryRunner queryRunner)
         {
-            _queryExecuter = queryExecuter;
+            _queryRunner = queryRunner;
         }
 
         // GET api/companies
         [HttpGet]
         public IEnumerable<CompanyResponse> Get()
         {
-            return _queryExecuter.Send(new CompaniesResponseQuery());
+            return _queryRunner.Send(new CompaniesResponseQuery());
         }
 
         // GET api/companies/5
         [HttpGet("{id}")]
         public CompanyResponse Get(int id)
         {
-            return _queryExecuter.Send(new CompanyResponseQuery(id));
+            return _queryRunner.Send(new CompanyResponseQuery(id));
         }
 
         // POST api/companies
