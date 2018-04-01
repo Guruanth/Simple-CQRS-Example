@@ -13,9 +13,9 @@ namespace Cqrs.Web.Controllers
     [Route("api/[controller]")]
     public class CompaniesController : Controller
     {
-        private readonly IQueryRunner _queryRunner;
+        private readonly IQueryDispatcher _queryRunner;
 
-        public CompaniesController(IQueryRunner queryRunner)
+        public CompaniesController(IQueryDispatcher queryRunner)
         {
             _queryRunner = queryRunner;
         }
@@ -24,14 +24,14 @@ namespace Cqrs.Web.Controllers
         [HttpGet]
         public IEnumerable<CompanyResponse> Get()
         {
-            return _queryRunner.Send(new CompaniesResponseQuery());
+            return _queryRunner.Dispatch(new CompaniesResponseQuery());
         }
 
         // GET api/companies/5
         [HttpGet("{id}")]
         public CompanyResponse Get(int id)
         {
-            return _queryRunner.Send(new CompanyResponseQuery(id));
+            return _queryRunner.Dispatch(new CompanyResponseQuery(id));
         }
 
         // POST api/companies

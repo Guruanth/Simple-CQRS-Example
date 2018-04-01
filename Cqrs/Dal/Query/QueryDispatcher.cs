@@ -8,9 +8,9 @@ using System.Collections.Generic;
 
 namespace Cqrs.Dal.Query
 {
-    public class QueryRunner : IQueryRunner
+    public class QueryDispatcher : IQueryDispatcher
     {
-        public TResult Send<TResult>(IQuery<TResult> query)
+        public TResult Dispatch<TResult>(IQuery<TResult> query)
         {
             return RunQuery(query);
         }
