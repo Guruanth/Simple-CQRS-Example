@@ -1,0 +1,13 @@
+﻿using Cqrs.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cqrs.Dal.Query.Api.People
+{
+    public class PeopleResponseQuery : IQuery<List<PersonResponse>>
+    {
+    }
+}
