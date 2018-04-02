@@ -16,7 +16,7 @@ namespace SampleApp.Cqrs.Query
 
         private TResult RunQuery<TResult>(IQuery<TResult> query)
         {
-            IQueryHandler<TResult> queryHandler = GetQueryHandler<TResult>();
+            var queryHandler = GetQueryHandler<TResult>();
 
             return queryHandler.RunQuery(query);
         }
@@ -27,7 +27,7 @@ namespace SampleApp.Cqrs.Query
         /// <typeparam name="TResult"></typeparam>
         /// <param name="ctx"></param>
         /// <returns></returns>
-        private static IQueryHandler<TResult> GetQueryHandler<TResult>()
+        private IQueryHandler<TResult> GetQueryHandler<TResult>()
         {
             var ctx = new DbContextQuery();
             IQueryHandler<TResult> queryHandler;
