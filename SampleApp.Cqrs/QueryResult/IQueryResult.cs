@@ -1,4 +1,4 @@
-﻿namespace SampleApp.Cqrs.Query
+﻿namespace SampleApp.Cqrs.QueryResult
 {
     public interface IQueryResult
     {

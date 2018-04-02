@@ -1,7 +1,8 @@
-﻿using SampleApp.Dal.Infrastructure;
+﻿using SampleApp.Cqrs.Query;
+using SampleApp.Dal.Infrastructure;
 using System.Collections.Generic;
 
-namespace SampleApp.Cqrs.Query
+namespace SampleApp.Cqrs.QueryHandler
 {
     public abstract class QueryHandlerBase<TQuery, TResult, TAggregateRoot> : IQueryHandler<TQuery, TResult>
         where TQuery : IQuery<TResult>

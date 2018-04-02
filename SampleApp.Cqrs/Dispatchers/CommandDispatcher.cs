@@ -1,10 +1,11 @@
-﻿using SampleApp.Cqrs.Command.Companies;
+﻿using SampleApp.Cqrs.Command;
+using SampleApp.Cqrs.Command.Companies;
 using SampleApp.Cqrs.CommandHandler;
 using SampleApp.Cqrs.CommandHandler.Companies;
 using SampleApp.Dal.Infrastructure;
 using System;
 
-namespace SampleApp.Cqrs.Command
+namespace SampleApp.Cqrs.Dispatchers
 {
     public class CommandDispatcher : ICommandDispatcher
     {

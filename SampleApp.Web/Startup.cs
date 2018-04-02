@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SampleApp.Cqrs.Command;
-using SampleApp.Cqrs.Query;
+using SampleApp.Cqrs.Dispatchers;
 
 namespace SampleApp.Web
 {

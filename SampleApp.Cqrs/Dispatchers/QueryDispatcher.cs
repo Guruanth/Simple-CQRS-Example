@@ -1,11 +1,13 @@
-﻿using SampleApp.Cqrs.QueryHandler.Companies;
+﻿using SampleApp.Cqrs.Query;
+using SampleApp.Cqrs.QueryHandler;
+using SampleApp.Cqrs.QueryHandler.Companies;
 using SampleApp.Cqrs.QueryHandler.People;
 using SampleApp.Cqrs.QueryResult;
 using SampleApp.Dal.Infrastructure;
 using System;
 using System.Collections.Generic;
 
-namespace SampleApp.Cqrs.Query
+namespace SampleApp.Cqrs.Dispatchers
 {
     public class QueryDispatcher : IQueryDispatcher
     {

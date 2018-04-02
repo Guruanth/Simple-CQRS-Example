@@ -1,4 +1,6 @@
-﻿namespace SampleApp.Cqrs.Query
+﻿using SampleApp.Cqrs.Query;
+
+namespace SampleApp.Cqrs.QueryHandler
 {
     public interface IQueryHandler<TResult> : IQueryHandler
     {

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SampleApp.Cqrs.Command;
 using SampleApp.Cqrs.Command.Companies;
+using SampleApp.Cqrs.Dispatchers;
 using SampleApp.Cqrs.Dto;
-using SampleApp.Cqrs.Query;
 using SampleApp.Cqrs.Query.People;
 using SampleApp.Cqrs.QueryResult;
 using System.Collections.Generic;

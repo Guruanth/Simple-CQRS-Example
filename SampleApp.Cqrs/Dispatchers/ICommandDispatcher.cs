@@ -1,4 +1,6 @@
-﻿namespace SampleApp.Cqrs.Command
+﻿using SampleApp.Cqrs.Command;
+
+namespace SampleApp.Cqrs.Dispatchers
 {
     public interface ICommandDispatcher
     {
