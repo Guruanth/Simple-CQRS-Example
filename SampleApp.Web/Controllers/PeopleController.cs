@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SampleApp.Cqrs.Command;
+using SampleApp.Cqrs.Command.Companies;
+using SampleApp.Cqrs.Dto;
 using SampleApp.Cqrs.Query;
 using SampleApp.Cqrs.Query.People;
 using SampleApp.Cqrs.QueryResult;
@@ -10,10 +13,12 @@ namespace SampleApp.Web.Controllers
     public class PeopleController : Controller
     {
         private readonly IQueryDispatcher _queryRunner;
+        private readonly ICommandDispatcher _commandDispatcher;
 
-        public PeopleController(IQueryDispatcher queryRunner)
+        public PeopleController(IQueryDispatcher queryRunner, ICommandDispatcher commandDispatcher)
         {
             _queryRunner = queryRunner;
+            _commandDispatcher = commandDispatcher;
         }
 
         // GET api/people
@@ -32,8 +37,9 @@ namespace SampleApp.Web.Controllers
 
         // POST api/people
         [HttpPost]
-        public void Post([FromBody]string person)
+        public void Post([FromBody]PersonDto personDto)
         {
+            _commandDispatcher.Dispatch(new AddPersonCommand(personDto));
         }
 
         // PUT api/people/5
