@@ -1,8 +1,5 @@
 ﻿namespace SampleApp.Dal.Models
 {
-    /// <summary>
-    /// Represents the Person table on the DB
-    /// </summary>
     public class Person
     {
         public int Id { get; set; }

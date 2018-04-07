@@ -1,5 +1,4 @@
-﻿using SampleApp.Cqrs.Query;
-using SampleApp.Cqrs.QueryResult;
+﻿using SampleApp.Cqrs.QueryResult;
 
 namespace SampleApp.Cqrs.Query.People
 {

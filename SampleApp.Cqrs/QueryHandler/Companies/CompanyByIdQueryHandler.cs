@@ -1,5 +1,4 @@
-﻿using SampleApp.Cqrs.Query;
-using SampleApp.Cqrs.Query.Companies;
+﻿using SampleApp.Cqrs.Query.Companies;
 using SampleApp.Cqrs.QueryResult;
 using SampleApp.Dal.Infrastructure;
 using SampleApp.Dal.Models;

@@ -1,5 +1,4 @@
 ﻿using SampleApp.Cqrs.Dto;
-using System;
 
 namespace SampleApp.Cqrs.Command.Companies
 {
