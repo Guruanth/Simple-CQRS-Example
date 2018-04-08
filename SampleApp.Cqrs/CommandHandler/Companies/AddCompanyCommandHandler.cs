@@ -1,7 +1,6 @@
 ﻿using SampleApp.Cqrs.Command.Companies;
 using SampleApp.Dal.Infrastructure;
 using SampleApp.Dal.Models;
-using System.Linq;
 
 namespace SampleApp.Cqrs.CommandHandler.Companies
 {
@@ -13,11 +12,13 @@ namespace SampleApp.Cqrs.CommandHandler.Companies
 
         protected override void RunCommandInternal(AddCompanyCommand command)
         {
-            var companyDto = command.CompanyDto;
-            DbSet.Add(new Company
+            var company = new Company
             {
-                Name = companyDto.Name
-            });
+                Name = command.CompanyDto.Name
+            };
+
+            Repository.Insert(company);
+            SaveChanges();
         }
     }
 }

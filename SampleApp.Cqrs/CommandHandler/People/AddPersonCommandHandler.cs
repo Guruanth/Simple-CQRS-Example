@@ -12,13 +12,16 @@ namespace SampleApp.Cqrs.CommandHandler.Companies
 
         protected override void RunCommandInternal(AddPersonCommand command)
         {
-            // NOTE: This code doesn't actually do anything since we don't have a real DB
+            var person = new Person
+            {
+                FirstName = command.PersonDto.FirstName,
+                LastName = command.PersonDto.LastName,
+                PhoneNumber = command.PersonDto.PhoneNumber,
+                Country = command.PersonDto.Country
+            };
 
-            var companyDto = command.PersonDto;
-
-            // TODO: Add business logic here
-
-            // TODO: Add DB code here
+            Repository.Insert(person);
+            SaveChanges();
         }
     }
 }

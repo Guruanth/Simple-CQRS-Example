@@ -1,4 +1,5 @@
 ﻿using SampleApp.Cqrs.Command;
+using SampleApp.Dal;
 using SampleApp.Dal.Infrastructure;
 using System.Linq;
 
@@ -10,8 +11,13 @@ namespace SampleApp.Cqrs.CommandHandler
     {
         private readonly SampleAppContext _context;
 
+        protected IRepository<TAggregateRoot> Repository { get; }
+
         protected CommandHandlerBase(SampleAppContext context)
         {
+            // TODO: We should be flexible here to accept other repositories
+            Repository = new EfRepository<TAggregateRoot>(context);
+
             _context = context;
         }
 
@@ -26,6 +32,11 @@ namespace SampleApp.Cqrs.CommandHandler
         protected IQueryable<TEntity> GetSet<TEntity>() where TEntity : class
         {
             return _context.Set<TEntity>();
+        }
+
+        protected void SaveChanges()
+        {
+            _context.SaveChanges();
         }
 
         /// <summary>
