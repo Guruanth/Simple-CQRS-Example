@@ -5,6 +5,7 @@ using SampleApp.Cqrs.Dto;
 using SampleApp.Cqrs.Query.Companies;
 using SampleApp.Cqrs.QueryResult;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SampleApp.Web.Controllers
 {
@@ -36,23 +37,39 @@ namespace SampleApp.Web.Controllers
 
         // POST api/companies
         [HttpPost]
-        public void Post([FromBody]CompanyDto companyDto)
+        public IActionResult Post([FromBody]CompanyDto companyDto)
         {
             _commandDispatcher.Dispatch(new AddCompanyCommand(companyDto));
+
+            return Ok();
         }
 
         // PUT api/companies/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]CompanyDto companyDto)
+        public async Task<IActionResult> Put(int id, [FromBody]CompanyDto companyDto)
         {
-            _commandDispatcher.Dispatch(new UpdateCompanyCommand(id, companyDto));
+            var companyResult = _queryDispatcher.Dispatch(new CompanyByIdQuery(id));
+
+            if (companyResult == null)
+            {
+                return NotFound(id);
+            }
+
+            if (await TryUpdateModelAsync(companyResult))
+            {
+                _commandDispatcher.Dispatch(new UpdateCompanyCommand(id, companyDto));
+            }
+
+            return Ok();
         }
 
         // DELETE api/companies/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             _commandDispatcher.Dispatch(new DeleteCompanyCommand(id));
+
+            return Ok();
         }
     }
 }
