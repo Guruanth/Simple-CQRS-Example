@@ -6,7 +6,7 @@ namespace SampleApp.Cqrs.CommandHandler.Companies
 {
     public class AddPersonCommandHandler : CommandHandlerBase<AddPersonCommand, Person>
     {
-        public AddPersonCommandHandler(IDbContextQuery dbContext) : base(dbContext)
+        public AddPersonCommandHandler(SampleAppContext context) : base(context)
         {
         }
 

@@ -1,4 +1,5 @@
-﻿using SampleApp.Cqrs.Query.Companies;
+﻿using Microsoft.Extensions.Logging;
+using SampleApp.Cqrs.Query.Companies;
 using SampleApp.Cqrs.QueryResult;
 using SampleApp.Dal.Infrastructure;
 using SampleApp.Dal.Models;
@@ -9,12 +10,14 @@ namespace SampleApp.Cqrs.QueryHandler.Companies
 {
     public class AllCompaniesQueryHandler : QueryHandlerBase<AllCompaniesQuery, List<CompanyQueryResult>, Company>
     {
-        public AllCompaniesQueryHandler(IDbContextQuery dbContext) : base(dbContext)
+        public AllCompaniesQueryHandler(SampleAppContext context, ILogger logger) : base(context, logger)
         {
         }
 
         protected override List<CompanyQueryResult> RunQueryInternal(AllCompaniesQuery query)
         {
+            Logger.LogInformation("AllCompaniesQueryHandler.RunQueryInternal");
+
             return DbSet.Select(o => new CompanyQueryResult
             {
                 Id = o.Id,

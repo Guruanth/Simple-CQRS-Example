@@ -1,6 +1,6 @@
 ﻿using SampleApp.Cqrs.Command;
 using SampleApp.Dal.Infrastructure;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace SampleApp.Cqrs.CommandHandler
 {
@@ -8,24 +8,24 @@ namespace SampleApp.Cqrs.CommandHandler
         where TCommand : ICommand
         where TAggregateRoot : class
     {
-        private readonly IDbContextQuery _dbContext;
+        private readonly SampleAppContext _context;
 
-        protected CommandHandlerBase(IDbContextQuery dbContext)
+        protected CommandHandlerBase(SampleAppContext context)
         {
-            _dbContext = dbContext;
+            _context = context;
         }
 
-        protected IEnumerable<TAggregateRoot> DbSet
+        protected IQueryable<TAggregateRoot> DbSet
         {
             get
             {
-                return _dbContext.GetQuery<TAggregateRoot>();
+                return _context.Set<TAggregateRoot>();
             }
         }
 
-        protected IEnumerable<TEntity> GetSet<TEntity>() where TEntity : class
+        protected IQueryable<TEntity> GetSet<TEntity>() where TEntity : class
         {
-            return _dbContext.GetQuery<TEntity>();
+            return _context.Set<TEntity>();
         }
 
         /// <summary>

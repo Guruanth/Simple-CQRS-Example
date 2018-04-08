@@ -1,6 +1,7 @@
-﻿using SampleApp.Cqrs.Query;
+﻿using Microsoft.Extensions.Logging;
+using SampleApp.Cqrs.Query;
 using SampleApp.Dal.Infrastructure;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace SampleApp.Cqrs.QueryHandler
 {
@@ -8,24 +9,27 @@ namespace SampleApp.Cqrs.QueryHandler
         where TQuery : IQuery<TResult>
         where TAggregateRoot : class
     {
-        private readonly IDbContextQuery _dbContext;
+        private readonly SampleAppContext _context;
 
-        protected QueryHandlerBase(IDbContextQuery dbContext)
+        protected ILogger Logger { get; }
+
+        protected QueryHandlerBase(SampleAppContext context, ILogger logger)
         {
-            _dbContext = dbContext;
+            _context = context;
+            Logger = logger;
         }
 
-        protected IEnumerable<TAggregateRoot> DbSet
+        protected IQueryable<TAggregateRoot> DbSet
         {
             get
             {
-                return _dbContext.GetQuery<TAggregateRoot>();
+                return _context.Set<TAggregateRoot>();
             }
         }
 
-        protected IEnumerable<TEntity> GetSet<TEntity>() where TEntity : class
+        protected IQueryable<TEntity> GetSet<TEntity>() where TEntity : class
         {
-            return _dbContext.GetQuery<TEntity>();
+            return _context.Set<TEntity>();
         }
 
         /// <summary>

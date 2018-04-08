@@ -1,4 +1,5 @@
-﻿using SampleApp.Cqrs.Query.People;
+﻿using Microsoft.Extensions.Logging;
+using SampleApp.Cqrs.Query.People;
 using SampleApp.Cqrs.QueryResult;
 using SampleApp.Dal.Infrastructure;
 using SampleApp.Dal.Models;
@@ -9,12 +10,14 @@ namespace SampleApp.Cqrs.QueryHandler.People
 {
     public class AllPeopleQueryHandler : QueryHandlerBase<AllPeopleQuery, List<PersonQueryResult>, Person>
     {
-        public AllPeopleQueryHandler(IDbContextQuery dbContext) : base(dbContext)
+        public AllPeopleQueryHandler(SampleAppContext context, ILogger logger) : base(context, logger)
         {
         }
 
         protected override List<PersonQueryResult> RunQueryInternal(AllPeopleQuery query)
         {
+            Logger.LogInformation("AllPeopleQueryHandler.RunQueryInternal");
+
             return DbSet.Select(o => new PersonQueryResult
             {
                 Id = o.Id,
