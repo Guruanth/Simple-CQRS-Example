@@ -1,8 +1,8 @@
-﻿using SampleApp.Cqrs.Command.Companies;
+﻿using SampleApp.Cqrs.Command.People;
 using SampleApp.Dal.Infrastructure;
 using SampleApp.Dal.Models;
 
-namespace SampleApp.Cqrs.CommandHandler.Companies
+namespace SampleApp.Cqrs.CommandHandler.People
 {
     public class AddPersonCommandHandler : CommandHandlerBase<AddPersonCommand, Person>
     {

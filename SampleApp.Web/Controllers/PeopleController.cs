@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SampleApp.Cqrs.Command.Companies;
+using SampleApp.Cqrs.Command.People;
 using SampleApp.Cqrs.Dispatchers;
 using SampleApp.Cqrs.Dto;
 using SampleApp.Cqrs.Query.People;
@@ -43,14 +43,16 @@ namespace SampleApp.Web.Controllers
 
         // PUT api/people/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string person)
+        public void Put(int id, [FromBody]PersonDto personDto)
         {
+            _commandDispatcher.Dispatch(new UpdatePersonCommand(id, personDto));
         }
 
         // DELETE api/people/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _commandDispatcher.Dispatch(new DeletePersonCommand(id));
         }
     }
 }

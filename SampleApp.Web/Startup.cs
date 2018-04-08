@@ -3,8 +3,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SampleApp.Cqrs.Command.Companies;
+using SampleApp.Cqrs.Command.People;
+using SampleApp.Cqrs.CommandHandler;
+using SampleApp.Cqrs.CommandHandler.Companies;
+using SampleApp.Cqrs.CommandHandler.People;
 using SampleApp.Cqrs.Dispatchers;
+using SampleApp.Cqrs.QueryHandler;
+using SampleApp.Cqrs.QueryHandler.Companies;
+using SampleApp.Cqrs.QueryHandler.People;
+using SampleApp.Cqrs.QueryResult;
 using SampleApp.Dal.Infrastructure;
+using System.Collections.Generic;
 
 namespace SampleApp.Web
 {
@@ -24,6 +34,24 @@ namespace SampleApp.Web
 
             services.AddScoped<ICommandDispatcher, CommandDispatcher>();
             services.AddScoped<IQueryDispatcher, QueryDispatcher>();
+
+            services
+                .AddScoped<ICommandHandler<AddCompanyCommand>, AddCompanyCommandHandler>()
+                .AddScoped<ICommandHandler<UpdateCompanyCommand>, UpdateCompanyCommandHandler>()
+                .AddScoped<ICommandHandler<DeleteCompanyCommand>, DeleteCompanyCommandHandler>();
+
+            services
+                .AddScoped<ICommandHandler<AddPersonCommand>, AddPersonCommandHandler>()
+                .AddScoped<ICommandHandler<UpdatePersonCommand>, UpdatePersonCommandHandler>()
+                .AddScoped<ICommandHandler<DeletePersonCommand>, DeletePersonCommandHandler>();
+
+            services
+                .AddScoped<IQueryHandler<List<CompanyQueryResult>>, AllCompaniesQueryHandler>()
+                .AddScoped<IQueryHandler<CompanyQueryResult>, CompanyByIdQueryHandler>();
+
+            services
+                .AddScoped<IQueryHandler<List<PersonQueryResult>>, AllPeopleQueryHandler>()
+                .AddScoped<IQueryHandler<PersonQueryResult>, PersonByIdQueryHandler>();
 
             services.AddMvc();
         }

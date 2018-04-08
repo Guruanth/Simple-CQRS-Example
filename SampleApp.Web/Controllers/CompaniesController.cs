@@ -43,14 +43,16 @@ namespace SampleApp.Web.Controllers
 
         // PUT api/companies/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string company)
+        public void Put(int id, [FromBody]CompanyDto companyDto)
         {
+            _commandDispatcher.Dispatch(new UpdateCompanyCommand(id, companyDto));
         }
 
         // DELETE api/companies/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _commandDispatcher.Dispatch(new DeleteCompanyCommand(id));
         }
     }
 }

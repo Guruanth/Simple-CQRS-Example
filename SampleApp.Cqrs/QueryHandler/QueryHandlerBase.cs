@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using SampleApp.Cqrs.Query;
+﻿using SampleApp.Cqrs.Query;
 using SampleApp.Dal.Infrastructure;
 using System.Linq;
 
@@ -11,12 +10,9 @@ namespace SampleApp.Cqrs.QueryHandler
     {
         private readonly SampleAppContext _context;
 
-        protected ILogger Logger { get; }
-
-        protected QueryHandlerBase(SampleAppContext context, ILogger logger)
+        protected QueryHandlerBase(SampleAppContext context)
         {
             _context = context;
-            Logger = logger;
         }
 
         protected IQueryable<TAggregateRoot> DbSet

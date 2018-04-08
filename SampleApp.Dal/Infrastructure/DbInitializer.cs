@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using SampleApp.Dal.Models;
+﻿using SampleApp.Dal.Models;
 using System.Linq;
 
 namespace SampleApp.Dal.Infrastructure

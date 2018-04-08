@@ -1,6 +1,6 @@
 ﻿using SampleApp.Cqrs.Dto;
 
-namespace SampleApp.Cqrs.Command.Companies
+namespace SampleApp.Cqrs.Command.People
 {
     public class AddPersonCommand : ICommand
     {
