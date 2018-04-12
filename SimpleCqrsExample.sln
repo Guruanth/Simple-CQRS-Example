@@ -7,7 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp.Web", "SampleApp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp.Dal", "SampleApp.Dal\SampleApp.Dal.csproj", "{94D5C661-6166-41C7-82BC-547DEC8909C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp.Cqrs", "SampleApp.Cqrs\SampleApp.Cqrs.csproj", "{80649A92-AA0B-4B7E-A701-63089A2A35C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp.Cqrs", "SampleApp.Cqrs\SampleApp.Cqrs.csproj", "{80649A92-AA0B-4B7E-A701-63089A2A35C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72155E1E-C1B3-48BF-A302-04D8EAF5F923}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
