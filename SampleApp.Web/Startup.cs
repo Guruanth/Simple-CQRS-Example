@@ -35,6 +35,8 @@ namespace SampleApp.Web
             services.AddScoped<ICommandDispatcher, CommandDispatcher>();
             services.AddScoped<IQueryDispatcher, QueryDispatcher>();
 
+            // TODO: The handlers should be extracted to a different file for organizational purposes
+
             services
                 .AddScoped<ICommandHandler<AddCompanyCommand>, AddCompanyCommandHandler>()
                 .AddScoped<ICommandHandler<UpdateCompanyCommand>, UpdateCompanyCommandHandler>()

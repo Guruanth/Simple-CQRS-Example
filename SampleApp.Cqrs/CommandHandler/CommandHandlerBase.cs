@@ -11,11 +11,14 @@ namespace SampleApp.Cqrs.CommandHandler
     {
         private readonly SampleAppContext _context;
 
+        /// <summary>
+        /// Represents the repository itself for more advanced scenarios
+        /// </summary>
         protected IRepository<TAggregateRoot> Repository { get; }
 
         protected CommandHandlerBase(SampleAppContext context)
         {
-            // TODO: We should be flexible here to accept other repositories
+            // TODO: We should be flexible here in case we want to accept other repositories
             Repository = new EfRepository<TAggregateRoot>(context);
 
             _context = context;

@@ -5,7 +5,7 @@ namespace SampleApp.Cqrs.Dispatchers
     public interface ICommandDispatcher
     {
         /// <summary>
-        /// Dispatches a command to its handler
+        /// Dispatches a command to its respective handler
         /// </summary>
         /// <typeparam name="TParameter">Command Type</typeparam>
         /// <param name="command">The command to be passed to the handler</param>

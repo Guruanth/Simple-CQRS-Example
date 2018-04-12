@@ -13,6 +13,7 @@ namespace SampleApp.Web
         {
             var host = BuildWebHost(args);
 
+            // NOTE: Necessary for seeding the initial data
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
